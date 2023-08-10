@@ -1,0 +1,19 @@
+version : "3.8"
+
+services:
+  app:
+    image: employee_microservice
+    build: 
+      context: .
+    ports: 
+      - 5000:5000
+  server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    volumes:
+      - mssqlvolume:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Kislay631
+
+volumes:
+  mssqlvolume:
