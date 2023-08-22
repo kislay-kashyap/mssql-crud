@@ -7,10 +7,15 @@ services:
       context: .
     ports: 
       - 5000:5000
+    restart: on-failure:15
     depends_on:
       - server
   server:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    logging:
+      driver: none
+    ports: 
+      - 1433:1433
     volumes:
       - mssqlvolume:/var/opt/mssql
     environment:
